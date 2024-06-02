@@ -12,23 +12,21 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent
  *
  * @see InitializationEvent
  */
-@Mod(modid = ExampleMod.MODID, name = ExampleMod.NAME, version = ExampleMod.VERSION)
-class ExampleMod {
-    // Register the config and commands.
+@Mod(modid = ExampleMod.MODID,
+    name = ExampleMod.NAME,
+    version = ExampleMod.VERSION,
+    modLanguageAdapter = "cc.polyfrost.oneconfig.utils.KotlinLanguageAdaptercc.polyfrost.oneconfig.utils.KotlinLanguageAdapter"
+)
+object ExampleMod {
+    const val MODID: String = "@ID@"
+    const val NAME: String = "@NAME@"
+    const val VERSION: String = "@VER@"
     @Mod.EventHandler
-    fun onInit(event: FMLInitializationEvent?) {
-        config = TestConfig()
-        CommandManager.INSTANCE.registerCommand(ExampleCommand())
+    fun onInit(event: FMLInitializationEvent) {
+        ModConfig
     }
 
-    companion object {
-        const val MODID: String = "@ID@"
-        const val NAME: String = "@NAME@"
-        const val VERSION: String = "@VER@"
 
-        // Sets the variables from `gradle.properties`. See the `blossom` config in `build.gradle.kts`.
-        @Mod.Instance(MODID)
-        var INSTANCE: ExampleMod? = null // Adds the instance of the mod, so we can access other variables.
-        var config: TestConfig? = null
-    }
+
+
 }
